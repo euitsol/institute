@@ -155,6 +155,14 @@
                 </a>
             </li>
 
+
+            <li class="sidebar-list-item">
+                <a href="{{ route('daily.report') }}"
+                   class="sidebar-link text-muted ">
+                    <i class="fa fa-file text-gray"></i><span>Daily report</span>
+                </a>
+            </li>
+
             @if (Auth::user()->role == 'admin')
 
                 <li class="sidebar-list-item">
@@ -170,7 +178,8 @@
                     </a>
                 </li>
                 <li class="sidebar-list-item">
-                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#teacher_payment" aria-expanded="false"
+                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#teacher_payment"
+                       aria-expanded="false"
                        aria-controls="teacher_payment" class="sidebar-link
                    text-muted"><i class="fas fa-money-check text-gray"></i><span>Teacher Payment</span></a>
                     <div id="teacher_payment" class="collapse">
@@ -191,7 +200,8 @@
                     </div>
                 </li>
                 <li class="sidebar-list-item">
-                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#mentor_payment" aria-expanded="false"
+                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#mentor_payment"
+                       aria-expanded="false"
                        aria-controls="mentor_payment" class="sidebar-link
                    text-muted"><i class="fas fa-money-check text-gray"></i><span>Mentor Payment</span></a>
                     <div id="mentor_payment" class="collapse">

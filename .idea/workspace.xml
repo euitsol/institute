@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="118be9e3-77ed-4f32-b7ee-f5f2ad229df8" name="Default Changelist" comment="" />
+    <list default="true" id="118be9e3-77ed-4f32-b7ee-f5f2ad229df8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partial/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partial/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,13 +37,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/partial/sidebar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-792">
-              <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="11" />
+            <state relative-caret-position="477">
+              <caret line="160" column="26" lean-forward="true" selection-start-line="158" selection-start-column="12" selection-end-line="163" selection-end-column="17" />
               <folding>
-                <element signature="e#0#12616#0#Blade" />
                 <element signature="e#0#12616#0#Blade" />
               </folding>
             </state>
@@ -49,17 +52,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="202" column="48" selection-start-line="202" selection-start-column="37" selection-end-line="202" selection-end-column="48" />
+            <state relative-caret-position="668">
+              <caret line="209" column="21" selection-start-line="209" selection-end-line="210" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PaymentController.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DailyreportController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
+            <state relative-caret-position="740">
+              <caret line="37" column="76" selection-start-line="37" selection-start-column="76" selection-end-line="37" selection-end-column="76" />
+              <folding>
+                <element signature="e#40#63#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/dailyReport/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -71,6 +86,7 @@
       <list>
         <option value="CSS File" />
         <option value="Laravel Blade File" />
+        <option value="Blade" />
       </list>
     </option>
   </component>
@@ -103,9 +119,9 @@
       <find>registration-form</find>
       <find>registration_form</find>
       <find>invitation-card</find>
-      <find>@if</find>
       <find>role</find>
       <find>payment/new</find>
+      <find>@if</find>
     </findStrings>
     <replaceStrings>
       <replace>dateIncrease</replace>
@@ -114,12 +130,12 @@
       <replace>btn-custom</replace>
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/teacher/index.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_01_15_091920_create_teacher_payments_table.php" />
-        <option value="$PROJECT_DIR$/app/Models/TeacherPaymentInfo.php" />
         <option value="$PROJECT_DIR$/resources/views/teacher/payment_setup/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/teacher_payment/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/teacher_payment/payment.blade.php" />
@@ -156,8 +172,6 @@
         <option value="$PROJECT_DIR$/resources/views/mentor/payment_setup/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TeacherPaymentController.php" />
         <option value="$PROJECT_DIR$/resources/views/teacher_payment/payment_history.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/partial/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MentorPaymentController.php" />
         <option value="$PROJECT_DIR$/resources/views/mentor_payment/payment_history.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
@@ -168,6 +182,11 @@
         <option value="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" />
         <option value="$PROJECT_DIR$/resources/views/account/money_receipt.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/student/registration_form.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/DailyreportController.php" />
+        <option value="$PROJECT_DIR$/resources/views/dailyReport/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/partial/sidebar.blade.php" />
       </list>
     </option>
   </component>
@@ -266,7 +285,7 @@
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -281,49 +300,58 @@
         <subPane>
           <expand>
             <path>
-              <item name="euitsols_institute" type="b2602c69:ProjectViewProjectNode" />
-              <item name="euitsols_institute" type="462c0819:PsiDirectoryNode" />
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="euitsols_institute" type="b2602c69:ProjectViewProjectNode" />
-              <item name="euitsols_institute" type="462c0819:PsiDirectoryNode" />
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="euitsols_institute" type="b2602c69:ProjectViewProjectNode" />
-              <item name="euitsols_institute" type="462c0819:PsiDirectoryNode" />
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="euitsols_institute" type="b2602c69:ProjectViewProjectNode" />
-              <item name="euitsols_institute" type="462c0819:PsiDirectoryNode" />
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="euitsols_institute" type="b2602c69:ProjectViewProjectNode" />
-              <item name="euitsols_institute" type="462c0819:PsiDirectoryNode" />
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="euitsols_institute" type="b2602c69:ProjectViewProjectNode" />
-              <item name="euitsols_institute" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="euitsols_institute" type="b2602c69:ProjectViewProjectNode" />
-              <item name="euitsols_institute" type="462c0819:PsiDirectoryNode" />
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partial" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="euitsols_institute" type="b2602c69:ProjectViewProjectNode" />
-              <item name="euitsols_institute" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="course_type" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="institute" type="b2602c69:ProjectViewProjectNode" />
+              <item name="institute" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="dailyReport" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -480,11 +508,12 @@
       <workItem from="1579937007651" duration="595000" />
       <workItem from="1580021490805" duration="3810000" />
       <workItem from="1580108036233" duration="4579000" />
+      <workItem from="1580123467284" duration="1953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="730012000" />
+    <option name="totallyTimeSpent" value="731965000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -496,9 +525,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49915966" visible="true" weight="0.1609808" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49915966" weight="0.18336888" />
       <window_info id="Structure" order="1" sideWeight="0.50084037" side_tool="true" weight="0.22239032" />
       <window_info id="Favorites" order="2" sideWeight="0.50084037" side_tool="true" weight="0.22239032" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -548,41 +578,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Models/MentorPayment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/mentor_payment/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="56" column="62" selection-end-line="84" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_061426_create_mentor_payment_infos_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="32" column="30" lean-forward="true" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/mentor/payment_setup/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="103" column="152" selection-start-line="103" selection-start-column="152" selection-end-line="103" selection-end-column="152" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/TeacherPaymentInfo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="20" column="53" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/MentorPaymentInfo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
@@ -883,31 +878,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partial/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-792">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#12616#0#Blade" />
-            <element signature="e#0#12616#0#Blade" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="202" column="48" selection-start-line="202" selection-start-column="37" selection-end-line="202" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PaymentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
+        <state relative-caret-position="192">
+          <caret line="226" column="58" lean-forward="true" selection-start-line="226" selection-start-column="58" selection-end-line="226" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <folding>
+            <element signature="e#40#63#0#PHP" expanded="true" />
+            <element signature="e#660#1395#0#PHP" />
+            <element signature="e#1401#1764#0#PHP" />
+            <element signature="e#1770#1975#0#PHP" />
+            <element signature="e#1981#2203#0#PHP" />
+            <element signature="e#2209#2413#0#PHP" />
+            <element signature="e#2419#3002#0#PHP" />
+            <element signature="e#3008#5259#0#PHP" />
+            <element signature="e#5265#7500#0#PHP" />
+            <element signature="e#7506#7932#0#PHP" />
+            <element signature="e#7938#8197#0#PHP" />
+            <element signature="e#8204#8725#0#PHP" />
+            <element signature="e#8732#8899#0#PHP" />
+            <element signature="e#8905#9519#0#PHP" />
+            <element signature="e#9525#10888#0#PHP" />
+            <element signature="e#10895#12494#0#PHP" />
+            <element signature="e#12501#14096#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/course_type/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1152" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/course/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="54" column="65" selection-end-line="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="668">
+          <caret line="209" column="21" selection-start-line="209" selection-end-line="210" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DailyreportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="37" column="76" selection-start-line="37" selection-start-column="76" selection-end-line="37" selection-end-column="76" />
+          <folding>
+            <element signature="e#40#63#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dailyReport/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partial/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="160" column="26" lean-forward="true" selection-start-line="158" selection-start-column="12" selection-end-line="163" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#12616#0#Blade" />
+          </folding>
         </state>
       </provider>
     </entry>

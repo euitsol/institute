@@ -208,5 +208,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/student/{sid}/payment/history', 'PaymentController@studentPaymentHistory')->name('student.payment.history');
 
     Route::get('/daily-report', 'DailyreportController@index')->name('daily.report');
+    Route::get('/daily-report/ajax', 'DailyreportController@drajax');
 
 });

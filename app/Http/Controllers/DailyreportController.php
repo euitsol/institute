@@ -39,5 +39,26 @@ class DailyreportController extends Controller
     }
 
 
+    public function drajax()
+    {
+        if (request()->ajax()) {
+            $date = $_GET['date'];
+            $payments = Payment::where('user_id', Auth::id())->whereDate('created_at', $date)->get();
+            $ts = 0;
+            $ta = 0;
+            if (count($payments) > 0){
+                $ts = count($payments);
+                foreach ($payments as $p){
+                    $ta = $ta + $p->amount;
+                }
+            }
+            $data = [$ts, $ta];
+            return $data;
+        } else {
+            abort(403);
+        }
+    }
+
+
 
 }

@@ -210,4 +210,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/daily-report', 'DailyreportController@index')->name('daily.report');
     Route::get('/daily-report/ajax', 'DailyreportController@drajax');
 
+    Route::get('/change-course-batch/{sid}/{cid}/{bid}', 'ChangecoursebatchController@index')->name('change.course.view');
+    Route::get('/ajax/change/course', 'ChangecoursebatchController@ajaxCall');
+    Route::post('/change-course-batch/{sid}/{cid}/{bid}', 'ChangecoursebatchController@change')->name('change.course');
+
+
 });

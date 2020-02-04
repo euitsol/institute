@@ -214,5 +214,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/ajax/change/course', 'ChangecoursebatchController@ajaxCall');
     Route::post('/change-course-batch/{sid}/{cid}/{bid}', 'ChangecoursebatchController@change')->name('change.course');
 
+    Route::get('/birthday', 'DailyreportController@birthday')->name('birthday');
+
 
 });

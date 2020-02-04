@@ -227,6 +227,12 @@
                         <i class="fa fa-file text-gray"></i><span>Report</span>
                     </a>
                 </li>
+                <li class="sidebar-list-item">
+                    <a href="{{route('birthday')}}"
+                       class="sidebar-link text-muted ">
+                        <i class="fa fa-birthday-cake text-gray"></i><span>Birth Day</span>
+                    </a>
+                </li>
 
             @endif
 

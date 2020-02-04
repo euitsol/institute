@@ -87,7 +87,7 @@
                         ticks: {
                             max: parseInt({{$student_count_max}}),
                             min: parseInt({{$student_count_min}}),
-                            fixedStepSize: 1
+                            fixedStepSize: 25
                         },
                         gridLines: {
                             color: '#fff'

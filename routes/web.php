@@ -215,6 +215,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/change-course-batch/{sid}/{cid}/{bid}', 'ChangecoursebatchController@change')->name('change.course');
 
     Route::get('/birthday', 'DailyreportController@birthday')->name('birthday');
+    Route::post('/sms-student-birthday', 'DailyreportController@birthdaySms')->name('sms.student.birthday');
 
     Route::post('/sms-student-batch/{bid}', 'ReportController@smsStudentBatch')->name('sms.student.batch');
 

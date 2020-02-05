@@ -56,6 +56,19 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            @if(count($students) > 0)
+                                <form action="{{route('sms.student.birthday')}}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="sms" required
+                                               value="European IT is wishing you the happiest of birthdays.">
+                                        @if($errors->has('sms'))
+                                            <span class="help-block text-danger">{{$errors->first('sms')}}</span>
+                                        @endif
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-primary">Send SMS</button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>

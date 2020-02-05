@@ -7,6 +7,7 @@ use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DailyreportController extends Controller
 {
@@ -78,6 +79,48 @@ class DailyreportController extends Controller
         } else {
             abort(403);
         }
+    }
+
+
+    public function birthdaySms(Request $request)
+    {
+        $request->validate([
+            'sms' => 'required',
+        ]);
+        $ss = Student::whereRaw('DAYOFYEAR(curdate()) =  dayofyear(dob)')->orderByRaw('DAYOFYEAR(dob)')->get();
+        foreach ($ss as $s){
+            $url = 'http://users.sendsmsbd.com/smsapi?';
+            $fields = array(
+                'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
+                'type' => urlencode('text'),
+                'contacts' => urlencode($s->phone),
+                'senderid' => '8809601000500',
+                'msg' => $request->sms,
+            );
+            $fields_string='';
+            foreach($fields as $key=>$value){
+                $fields_string .= $key.'='.$value.'&';
+            }
+            rtrim($fields_string, '&');
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_POST, count($fields));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FAILONERROR, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result = curl_exec($ch);
+            if($result === false)
+            {
+                $e = curl_error($ch);
+                Session::flash('error', "Something went wrong :( $e");
+                return redirect()->back();
+            }
+            curl_close($ch);
+        }
+        Session::flash('success', "Sms sent successfully.");
+        return redirect()->back();
     }
 
 

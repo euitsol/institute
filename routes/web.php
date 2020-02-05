@@ -216,5 +216,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/birthday', 'DailyreportController@birthday')->name('birthday');
 
+    Route::post('/sms-student-batch/{bid}', 'ReportController@smsStudentBatch')->name('sms.student.batch');
+
 
 });

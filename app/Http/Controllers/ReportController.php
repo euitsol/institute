@@ -15,6 +15,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ReportController extends Controller
 {
@@ -45,7 +46,7 @@ class ReportController extends Controller
         $course = $batch->course;
         $students = $batch->students;
         $batch_name = batch_name($course->title_short_form, $batch->year, $batch->month, $batch->batch_number);
-        return view('report.students_by_batch', compact('students', 'course', 'batch_name'));
+        return view('report.students_by_batch', compact('students', 'course', 'batch_name', 'bid'));
     }
 
     public function studentsByCourse($cid)
@@ -335,4 +336,45 @@ class ReportController extends Controller
         return view('report.today_installment_dates', compact('dates'));
     }
 
+    public function smsStudentBatch(Request $request, $bid)
+    {
+        $request->validate([
+            'sms' => 'required',
+        ]);
+        $b = Batch::find($bid);
+        $ss = $b->students;
+        foreach ($ss as $s){
+            $url = 'http://users.sendsmsbd.com/smsapi?';
+            $fields = array(
+                'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
+                'type' => urlencode('text'),
+                'contacts' => urlencode($s->phone),
+                'senderid' => '8809601000500',
+                'msg' => $request->sms,
+            );
+            $fields_string='';
+            foreach($fields as $key=>$value){
+                $fields_string .= $key.'='.$value.'&';
+            }
+            rtrim($fields_string, '&');
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_POST, count($fields));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FAILONERROR, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result = curl_exec($ch);
+            if($result === false)
+            {
+                $e = curl_error($ch);
+                Session::flash('error', "Something went wrong :( $e");
+                return redirect()->back();
+            }
+            curl_close($ch);
+        }
+        Session::flash('success', "Sms sent successfully.");
+        return redirect()->back();
+    }
 }

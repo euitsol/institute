@@ -85,8 +85,10 @@ class ChangecoursebatchController extends Controller
                 $cs[] = $request->course;
                 $student->courses()->sync($cs);
                 $a = Account::where('student_id', $sid)->where('course_id', $cid)->first();
-                $a->course_id = $request->course;
-                $a->update();
+                if ($a){
+                    $a->course_id = $request->course;
+                    $a->update();
+                }
                 DB::commit();
                 $success = true;
             } catch (\Exception $e) {

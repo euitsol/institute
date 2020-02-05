@@ -321,7 +321,7 @@
                                                         </tr>
                                                     @elseif ($student->birth)
                                                         <tr>
-                                                            <td>Date of Birth</td>
+                                                            <td>Birth Certificate</td>
                                                             <td>:</td>
                                                             <td>{{$student->birth}}</td>
                                                         </tr>

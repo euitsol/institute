@@ -238,21 +238,22 @@ class PaymentController extends Controller
             $this->sendSms($student->phone, $message);
         }
 
-        if (isset($student->email)) {
-
-            $data = [
-                'name' => $to_name,
-                'total_course_fee' => $total_course_fee,
-                'today_paid_amount' => $today_paid_amount,
-                'total_paid' => $total_payments,
-                'due_amount' => $due_amount
-            ];
-
-            Mail::send('account.money_receipt_mail', $data, function($message) use ($to_name, $to_email) {
-                $message->to($to_email, $to_name)->subject('Payment confirmation');
-                $message->from('europeanitinstitute@gmail.com','European IT Institute');
-            });
-        }
+//        no email
+//        if (isset($student->email)) {
+//
+//            $data = [
+//                'name' => $to_name,
+//                'total_course_fee' => $total_course_fee,
+//                'today_paid_amount' => $today_paid_amount,
+//                'total_paid' => $total_payments,
+//                'due_amount' => $due_amount
+//            ];
+//
+//            Mail::send('account.money_receipt_mail', $data, function($message) use ($to_name, $to_email) {
+//                $message->to($to_email, $to_name)->subject('Payment confirmation');
+//                $message->from('europeanitinstitute@gmail.com','European IT Institute');
+//            });
+//        }
 
 
         $this->message('success', 'Installment payment successfully saved.');

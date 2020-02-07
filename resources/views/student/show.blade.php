@@ -191,7 +191,7 @@
                                                 <th>Course</th>
                                                 <th>Batch</th>
                                                 @if(Auth::user()->role == 'admin')
-                                                    <th style="display: none;">Action</th>
+                                                    <th>Action</th>
                                                 @endif
                                             </tr>
                                             @foreach($student->batches as $k => $batch)
@@ -200,7 +200,7 @@
                                                     <td>{{$batch->course->title}}</td>
                                                     <td>{{batch_name($batch->course->title_short_form, $batch->year, $batch->month, $batch->batch_number)}}</td>
                                                     @if(Auth::user()->role == 'admin')
-                                                        <td style="display: none;">
+                                                        <td>
                                                             <a href="{{route('change.course.view', ['sid' => $student->id, 'cid' => $batch->course->id, 'bid' => $batch->id])}}">
                                                                 Change
                                                             </a>

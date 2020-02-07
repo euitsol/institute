@@ -94,7 +94,7 @@ class DailyreportController extends Controller
                 'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
                 'type' => urlencode('text'),
                 'contacts' => urlencode($s->phone),
-                'senderid' => '8809601000500',
+                'senderid' => 'European IT',
                 'msg' => $request->sms,
             );
             $fields_string='';

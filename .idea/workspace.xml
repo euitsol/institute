@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="118be9e3-77ed-4f32-b7ee-f5f2ad229df8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/euitsols_institute.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/euitsols_institute.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DailyreportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DailyreportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/birthday/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/birthday/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/registration_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/registration_form.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +311,11 @@
       <workItem from="1581075418160" duration="85000" />
       <workItem from="1581075518285" duration="422000" />
       <workItem from="1581076027208" duration="80000" />
-      <workItem from="1581314178413" duration="7031000" />
+      <workItem from="1581314178413" duration="7327000" />
+      <workItem from="1581501598640" duration="1191000" />
+      <workItem from="1581575343749" duration="3541000" />
+      <workItem from="1581663108272" duration="594000" />
+      <workItem from="1581744589709" duration="673000" />
     </task>
     <servers />
   </component>

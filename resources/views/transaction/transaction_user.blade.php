@@ -29,7 +29,12 @@
 
                         <div class="clearfix">
                             <p class="float-left">
-                               <i class="fa fa-money-bill"></i> Transactions By <b>{{ $user->name }}</b>
+                                <i class="fa fa-money-bill"></i>
+                                @if($x = 'all')
+                                    Transactions of all users
+                                @else
+                                    Transactions By <b>{{ $user->name }}</b>
+                                @endif
                             </p>
                             <p class="float-right"><b>Date : </b> {{ date('D d F, Y') }}</p>
                         </div>

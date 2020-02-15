@@ -15,7 +15,7 @@
                     <span class="float-left">
                         <h4> Report </h4>
                     </span>
-                    <span class="float-right">
+                        <span class="float-right">
                         <h4> Students by Batch </h4>
                     </span>
                     </div>
@@ -61,6 +61,17 @@
 
                                     @endforelse
                                 </table>
+                                <form action="{{route('sms.student.batch', ['bid' => $bid])}}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="SMS body" name="sms"
+                                               required>
+                                        @if($errors->has('sms'))
+                                            <span class="help-block text-danger">{{$errors->first('sms')}}</span>
+                                        @endif
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-primary">Send SMS</button>
+                                </form>
                             </div>
                         @endif
 

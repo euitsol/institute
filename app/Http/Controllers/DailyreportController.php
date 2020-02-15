@@ -7,6 +7,8 @@ use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class DailyreportController extends Controller
 {
@@ -78,6 +80,80 @@ class DailyreportController extends Controller
         } else {
             abort(403);
         }
+    }
+
+
+    public function birthdaySms(Request $request)
+    {
+        $request->validate([
+            'sms' => 'required',
+        ]);
+        $ss = Student::whereRaw('DAYOFYEAR(curdate()) =  dayofyear(dob)')->orderByRaw('DAYOFYEAR(dob)')->get();
+        foreach ($ss as $s) {
+            $url = 'http://users.sendsmsbd.com/smsapi?';
+            $fields = array(
+                'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
+                'type' => urlencode('text'),
+                'contacts' => urlencode($s->phone),
+                'senderid' => 'European IT',
+                'msg' => $request->sms,
+            );
+            $fields_string = '';
+            foreach ($fields as $key => $value) {
+                $fields_string .= $key . '=' . $value . '&';
+            }
+            rtrim($fields_string, '&');
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_POST, count($fields));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FAILONERROR, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result = curl_exec($ch);
+            if ($result === false) {
+                $e = curl_error($ch);
+                Session::flash('error', "Something went wrong :( $e");
+                return redirect()->back();
+            }
+            curl_close($ch);
+        }
+        Session::flash('success', "Sms sent successfully.");
+        return redirect()->back();
+    }
+
+
+    public function birthdayP(Request $request)
+    {
+        $request->validate([
+            'today' => 'required|date',
+            'date' => 'required|date|after_or_equal:today',
+        ]);
+        $today = new \DateTime($request->tiday);
+        $date = new \DateTime($request->date);
+        $interval = $date->diff($today);
+        //        $days = $interval->format('%a');
+        $days = ($interval->format('%a') * 1) + 1;
+        return redirect()->route('birthday.p.dummy', ['days' => $days]);
+    }
+
+
+    public function birthdayPD($days)
+    {
+        $students = Student::whereRaw("DAYOFYEAR(curdate()) <= DAYOFYEAR(dob) AND DAYOFYEAR(curdate()) + $days >=  dayofyear(dob)")
+            ->orderByRaw('DAYOFYEAR(dob)')
+            ->get();
+        foreach ($students as $s) {
+            $s['institute'] = $s->institute->name;
+            $bn = [];
+            $bs = $s->batches;
+            foreach ($bs as $batch) {
+                $bn[] = batch_name($batch->course->title_short_form, $batch->year, $batch->month, $batch->batch_number);
+            }
+            $s['batches'] = $bn;
+        }
+        return view('birthday.search', compact('students'));
     }
 
 

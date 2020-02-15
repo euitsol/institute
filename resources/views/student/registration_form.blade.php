@@ -466,46 +466,46 @@
                     </div>
 
                 </div>
-                <div class="card mt-4">
-                    <div class="card-body">
+{{--                <div class="card mt-4">--}}
+{{--                    <div class="card-body">--}}
 
-                        <div id="invitation-card">
+{{--                        <div id="invitation-card">--}}
 
-                            <div class="full">
-                                <div class="full_second">
+{{--                            <div class="full">--}}
+{{--                                <div class="full_second">--}}
 
-                                    <div class="heading">
-                                        <h3>Invitation <br> To <br> Orientation Program for Industrial Attachment – 2020
-                                        </h3>
+{{--                                    <div class="heading">--}}
+{{--                                        <h3>Invitation <br> To <br> Orientation Program for Industrial Attachment – 2020--}}
+{{--                                        </h3>--}}
 
-                                    </div>
-                                    <div class="letter">
-                                        <p>Dear {{$student->name}},</p>
-                                        <p> European IT would like to take this opportunity to invite you to the
-                                            Orientation Program (Industrial Attachment) on Saturday 8th February 2020 at
-                                            DSS Convention Center (2nd Floor, 586/1 Mirpur Road, Dhaka 1219). The
-                                            program will start at 10:00am and you are requested to arrive one hour
-                                            early.
-                                            <br> <br>
-                                            Kindly bring the invitation letter with you. We hope to see you on February
-                                            8th!
-                                        </p>
+{{--                                    </div>--}}
+{{--                                    <div class="letter">--}}
+{{--                                        <p>Dear {{$student->name}},</p>--}}
+{{--                                        <p> European IT would like to take this opportunity to invite you to the--}}
+{{--                                            Orientation Program (Industrial Attachment) on Saturday 8th February 2020 at--}}
+{{--                                            DSS Convention Center (2nd Floor, 586/1 Mirpur Road, Dhaka 1219). The--}}
+{{--                                            program will start at 10:00am and you are requested to arrive one hour--}}
+{{--                                            early.--}}
+{{--                                            <br> <br>--}}
+{{--                                            Kindly bring the invitation letter with you. We hope to see you on February--}}
+{{--                                            8th!--}}
+{{--                                        </p>--}}
 
-                                        <p>Sincerely, <br> Administration <br>European IT Institute</p>
+{{--                                        <p>Sincerely, <br> Administration <br>European IT Institute</p>--}}
 
 
-                                    </div>
+{{--                                    </div>--}}
 
-                                    <div class="logo">
-                                        <img src="{{ asset('assets/invitation/logo.png') }}" alt="logo">
-                                    </div>
-                                </div>
-                            </div>
+{{--                                    <div class="logo">--}}
+{{--                                        <img src="{{ asset('assets/invitation/logo.png') }}" alt="logo">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                        </div>
+{{--                        </div>--}}
 
-                    </div>
-                </div>
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>

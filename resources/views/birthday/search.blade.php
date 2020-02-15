@@ -15,10 +15,11 @@
                     @if($errors->has('today') || $errors->has('date'))
                         <span class="help-block text-danger">Please Do Not Mess With The Original Code !!!</span>
                     @endif
-                    <div class="card-header">
-                        <span class="float-left">
-                        <h4>Birthdays</h4>
-                    </span>
+                    <div class="card-header text-center">
+                        <span class="float-left"><h4>Birthdays</h4></span>
+                        <button type="button" onclick="printT('print-student')"
+                                class="btn btn-dark btn-sm text-center"><i class="fa fa-print"></i>
+                        </button>
                         <span class="float-right">
                         <form action="{{route('birthday.p')}}" method="post">
                             @csrf
@@ -27,6 +28,7 @@
                             <button type="submit" class="btn btn-sm btn-secondary">search</button>
                         </form>
                     </span>
+
                     </div>
                     <div class="card-body">
                         @if(session('success'))
@@ -38,13 +40,14 @@
                                 {{ session('error') }}
                             </p>
                         @endif
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="print-student">
                             <table class="table">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Phone</th>
+                                    <th>Date Of Birth</th>
                                     <th>Institute</th>
                                     <th>Batches</th>
                                 </tr>
@@ -55,6 +58,7 @@
                                         <td> {{ $i + 1 }} </td>
                                         <td> {{ $student->name }} </td>
                                         <td> {{ $student->phone }} </td>
+                                        <td> {{ $student->dob }} </td>
                                         <td> {{ $student->institute }} </td>
                                         <td>
                                             @forelse($student->batches as $b)
@@ -67,19 +71,6 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            @if(count($students) > 0)
-                                <form action="{{route('sms.student.birthday')}}" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="sms" required
-                                               value="European IT is wishing you the happiest of birthdays.">
-                                        @if($errors->has('sms'))
-                                            <span class="help-block text-danger">{{$errors->first('sms')}}</span>
-                                        @endif
-                                    </div>
-                                    <button type="submit" class="btn btn-sm btn-primary">Send SMS</button>
-                                </form>
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -87,3 +78,15 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        function printT(el) {
+            var rp = document.body.innerHTML;
+            var pc = document.getElementById(el).innerHTML;
+            document.body.innerHTML = pc;
+            document.title = 'student-list';
+            window.print();
+            document.body.innerHTML = rp;
+        }
+    </script>
+@endpush

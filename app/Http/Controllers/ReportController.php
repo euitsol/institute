@@ -15,6 +15,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ReportController extends Controller
 {
@@ -45,7 +46,7 @@ class ReportController extends Controller
         $course = $batch->course;
         $students = $batch->students;
         $batch_name = batch_name($course->title_short_form, $batch->year, $batch->month, $batch->batch_number);
-        return view('report.students_by_batch', compact('students', 'course', 'batch_name'));
+        return view('report.students_by_batch', compact('students', 'course', 'batch_name', 'bid'));
     }
 
     public function studentsByCourse($cid)
@@ -229,47 +230,52 @@ class ReportController extends Controller
             'from_date' => 'required|date',
             'to_date' => 'required|date'
         ]);
-
-        if (isset($request->user) && $request->user != 'all') {
-            return redirect()->route('transaction.user.show', [
-                'uid' => $request->user,
-                'from_date' => $request->from_date,
-                'to_date' => $request->to_date
-            ]);
-        }
-
-        return redirect()->route('transaction.show', [
-            $request->from_date,
-            $request->to_date
+        return redirect()->route('transaction.user.show', [
+            'uid' => $request->user,
+            'from_date' => $request->from_date,
+            'to_date' => $request->to_date
         ]);
+//        if (isset($request->user) && $request->user != 'all') {
+//            return redirect()->route('transaction.user.show', [
+//                'uid' => $request->user,
+//                'from_date' => $request->from_date,
+//                'to_date' => $request->to_date
+//            ]);
+//        }
+//
+//        return redirect()->route('transaction.show', [
+//            $request->from_date,
+//            $request->to_date
+//        ]);
     }
 
-    public function transaction_show($from_date, $to_date)
-    {
-        if (empty($from_date) || empty($to_date)) {
-            $this->message('error', 'The from date and to date field is required.');
-            return redirect()->back()->withInput();
-        }
-
-        $accounts = Account::whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
-            ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
-
-        if ($accounts->count() > 0) {
-            foreach ($accounts as $account) {
-                $batch = Student::find($account->student_id)->batches->where('course_id', $account->course_id)->first();
-                if (isset($batch)) {
-                    $account['batch'] = batch_name($account->course->title_short_form, $batch->year, $batch->month, $batch->batch_number);
-                } else {
-                    $cm = CourseMigration::where('old_course_id', $account->course_id)
-                        ->where('student_id', $account->student_id)->first();
-                    $_batch = Batch::find($cm->old_batch_id);
-                    $account['batch'] = batch_name($_batch->course->title_short_form, $_batch->year, $_batch->month, $_batch->batch_number);
-                }
-            }
-        }
-
-        return view('transaction.transactions', compact('accounts', 'from_date', 'to_date'));
-    }
+    // This Function is useless now
+//    public function transaction_show($from_date, $to_date)
+//    {
+//        if (empty($from_date) || empty($to_date)) {
+//            $this->message('error', 'The from date and to date field is required.');
+//            return redirect()->back()->withInput();
+//        }
+//
+//        $accounts = Account::whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
+//            ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
+//
+//        if ($accounts->count() > 0) {
+//            foreach ($accounts as $account) {
+//                $batch = Student::find($account->student_id)->batches->where('course_id', $account->course_id)->first();
+//                if (isset($batch)) {
+//                    $account['batch'] = batch_name($account->course->title_short_form, $batch->year, $batch->month, $batch->batch_number);
+//                } else {
+//                    $cm = CourseMigration::where('old_course_id', $account->course_id)
+//                        ->where('student_id', $account->student_id)->first();
+//                    $_batch = Batch::find($cm->old_batch_id);
+//                    $account['batch'] = batch_name($_batch->course->title_short_form, $_batch->year, $_batch->month, $_batch->batch_number);
+//                }
+//            }
+//        }
+//
+//        return view('transaction.transactions', compact('accounts', 'from_date', 'to_date'));
+//    }
 
 
     public function user_transaction_show($uid, $from_date, $to_date)
@@ -277,10 +283,17 @@ class ReportController extends Controller
         if (empty($uid) || empty($from_date) || empty($to_date)) {
             return redirect()->route('transaction');
         }
-
-        $user = User::find($uid);
-        $payments = Payment::where('user_id', $uid)->whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
-                            ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
+        if ($uid == 'all'){
+            $x = 'all';
+            $user = 'all';
+            $payments = Payment::whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
+                ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
+        } else {
+            $x = 'user';
+            $user = User::find($uid);
+            $payments = Payment::where('user_id', $uid)->whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
+                ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
+        }
         if ($payments->count() > 0) {
             foreach ($payments as $payment) {
                 $account = $payment->account;
@@ -335,4 +348,45 @@ class ReportController extends Controller
         return view('report.today_installment_dates', compact('dates'));
     }
 
+    public function smsStudentBatch(Request $request, $bid)
+    {
+        $request->validate([
+            'sms' => 'required',
+        ]);
+        $b = Batch::find($bid);
+        $ss = $b->students;
+        foreach ($ss as $s){
+            $url = 'http://users.sendsmsbd.com/smsapi?';
+            $fields = array(
+                'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
+                'type' => urlencode('text'),
+                'contacts' => urlencode($s->phone),
+                'senderid' => 'European IT',
+                'msg' => $request->sms,
+            );
+            $fields_string='';
+            foreach($fields as $key=>$value){
+                $fields_string .= $key.'='.$value.'&';
+            }
+            rtrim($fields_string, '&');
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_POST, count($fields));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FAILONERROR, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result = curl_exec($ch);
+            if($result === false)
+            {
+                $e = curl_error($ch);
+                Session::flash('error', "Something went wrong :( $e");
+                return redirect()->back();
+            }
+            curl_close($ch);
+        }
+        Session::flash('success', "Sms sent successfully.");
+        return redirect()->back();
+    }
 }

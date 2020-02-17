@@ -236,6 +236,41 @@
 
             @endif
 
+            <li class="sidebar-list-item">
+                <a href="javascript:void(0)" data-toggle="collapse" data-target="#marketing"
+                   aria-expanded="false"
+                   aria-controls="mentor_payment" class="sidebar-link
+                   text-muted"><i class="fas fa-money-check text-gray"></i><span>Marketing</span></a>
+                <div id="marketing" class="collapse">
+                    <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+                        <li class="sidebar-list-item">
+                            <a href="{{ route('mentor.payment.mentor-search') }}"
+                               class="sidebar-link text-muted ">
+                                <i class="fa fa-money-check text-gray"></i><span>Default List</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-list-item">
+                            <a href="{{ route('mentor.payment.history') }}"
+                               class="sidebar-link text-muted">
+                                <i class="fa fa-list-ol text-gray"></i><span>Add</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-list-item">
+                            <a href="{{ route('mentor.payment.history') }}"
+                               class="sidebar-link text-muted">
+                                <i class="fa fa-list-ol text-gray"></i><span>Admitted List</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-list-item">
+                            <a href="{{ route('mentor.payment.history') }}"
+                               class="sidebar-link text-muted">
+                                <i class="fa fa-list-ol text-gray"></i><span>Not Interested List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
         </ul>
     </div>
     <div class="page-holder w-100 d-flex flex-wrap">

@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="118be9e3-77ed-4f32-b7ee-f5f2ad229df8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/teacher_payment/payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/teacher_payment/payment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partial/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partial/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/transaction/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transaction/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/transaction/transaction_user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transaction/transaction_user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,7 +321,7 @@
       <workItem from="1581663108272" duration="594000" />
       <workItem from="1581744589709" duration="691000" />
       <workItem from="1581762929229" duration="927000" />
-      <workItem from="1581928066152" duration="598000" />
+      <workItem from="1581928066152" duration="4474000" />
     </task>
     <servers />
   </component>
@@ -359,9 +363,24 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/routes/web.php</url>
-          <line>64</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/resources/views/partial/sidebar.blade.php</url>
+          <line>246</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/partial/sidebar.blade.php</url>
+          <line>252</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/partial/sidebar.blade.php</url>
+          <line>258</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/partial/sidebar.blade.php</url>
+          <line>264</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

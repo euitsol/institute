@@ -228,12 +228,14 @@ class ReportController extends Controller
     {
         $request->validate([
             'from_date' => 'required|date',
-            'to_date' => 'required|date'
+            'to_date' => 'required|date',
+            'type' => 'required',
         ]);
         return redirect()->route('transaction.user.show', [
             'uid' => $request->user,
             'from_date' => $request->from_date,
-            'to_date' => $request->to_date
+            'to_date' => $request->to_date,
+            'type' => $request->type,
         ]);
 //        if (isset($request->user) && $request->user != 'all') {
 //            return redirect()->route('transaction.user.show', [
@@ -278,25 +280,43 @@ class ReportController extends Controller
 //    }
 
 
-    public function user_transaction_show($uid, $from_date, $to_date)
+    public function user_transaction_show($uid, $from_date, $to_date, $type)
     {
         if (empty($uid) || empty($from_date) || empty($to_date)) {
             return redirect()->route('transaction');
         }
         if ($uid == 'all'){
-            $x = 'all';
             $user = 'all';
-            $payments = Payment::whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
+            $ps = Payment::whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
                 ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
+            $payments = [];
+            if ($type != 'all'){
+                foreach ($ps as $p){
+                    if (Student::find(Account::find($p->account_id)->student_id)->student_as == $type){
+                        $payments[] = $p;
+                    }
+                }
+            } else {
+                $payments = $ps;
+            }
         } else {
-            $x = 'user';
             $user = User::find($uid);
-            $payments = Payment::where('user_id', $uid)->whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
+            $ps = Payment::where('user_id', $uid)->whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
                 ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
+            $payments = [];
+            if ($type != 'all'){
+                foreach ($ps as $p){
+                    if (Student::find(Account::find($p->account_id)->student_id)->student_as == $type){
+                        $payments[] = $p;
+                    }
+                }
+            } else {
+                $payments = $ps;
+            }
         }
-        if ($payments->count() > 0) {
+        if (!empty($payments)) {
             foreach ($payments as $payment) {
-                $account = $payment->account;
+                $account = Account::find($payment->account_id);
                 $batch = $account->student->batches->where('course_id', $account->course_id)->first();
                 if (isset($batch)) {
                     $payment['batch'] = batch_name($account->course->title_short_form, $batch->year, $batch->month, $batch->batch_number);

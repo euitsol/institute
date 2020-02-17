@@ -161,8 +161,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/transaction', 'ReportController@transaction')->name('transaction');
         Route::post('/transaction/find', 'ReportController@transaction_find')->name('transaction.find');
-        Route::get('/transaction/{from_date}/{to_date}/found', 'ReportController@transaction_show')->name('transaction.show');
-        Route::get('/transaction/{uid}/{from_date}/{to_date}/show', 'ReportController@user_transaction_show')->name('transaction.user.show');
+//        Route::get('/transaction/{from_date}/{to_date}/found', 'ReportController@transaction_show')->name('transaction.show');
+        Route::get('/transaction/{uid}/{from_date}/{to_date}/{type}/show', 'ReportController@user_transaction_show')->name('transaction.user.show');
 
         Route::get('/student/{sid}/course/{bid}/migration', 'StudentController@student_course_migration')->name('student.course.migration');
         Route::post('/student/course/migrate', 'StudentController@student_course_migrate')->name('student.course.migrate');

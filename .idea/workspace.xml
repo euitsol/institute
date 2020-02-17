@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="118be9e3-77ed-4f32-b7ee-f5f2ad229df8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/student/registration_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/registration_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/teacher_payment/payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/teacher_payment/payment.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +152,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HR" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -315,7 +315,9 @@
       <workItem from="1581501598640" duration="1191000" />
       <workItem from="1581575343749" duration="3541000" />
       <workItem from="1581663108272" duration="594000" />
-      <workItem from="1581744589709" duration="673000" />
+      <workItem from="1581744589709" duration="691000" />
+      <workItem from="1581762929229" duration="927000" />
+      <workItem from="1581928066152" duration="598000" />
     </task>
     <servers />
   </component>
@@ -340,13 +342,28 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="257" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581075884722" />
-    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1581319428132">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1581746884353">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581319428132" />
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581746884353" />
     <state x="461" y="163" key="SettingsEditor" timestamp="1581076067616">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581076067616" />
+    <state x="646" y="236" width="627" height="568" key="find.popup" timestamp="1581763358906">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="646" y="236" width="627" height="568" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581763358906" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/routes/web.php</url>
+          <line>64</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

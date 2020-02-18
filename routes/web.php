@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Auth::routes();
 
 Route::get('/pdf', function () {
@@ -220,6 +209,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/birthday/{days}', 'DailyreportController@birthdayPD')->name('birthday.p.dummy');
 
     Route::post('/sms-student-batch/{bid}', 'ReportController@smsStudentBatch')->name('sms.student.batch');
+
+    Route::get('/marketing/default-list', 'MarketingController@index')->name('marketing.list');
+    Route::get('/marketing/admitted-list', 'MarketingController@admittedList')->name('marketing.admitted.list');
+    Route::get('/marketing/not-interested-list', 'MarketingController@notInterestedList')->name('marketing.not.interested.list');
+    Route::get('/marketing/add', 'MarketingController@create')->name('marketing.add');
+    Route::get('/marketing/delete/{mid}', 'MarketingController@destroy')->name('marketing.delete');
+    Route::get('/marketing/admitted/{mid}', 'MarketingController@admitted')->name('marketing.admitted');
+    Route::get('/marketing/not-interested/{mid}', 'MarketingController@notInterested')->name('marketing.notInterested');
+    Route::get('/marketing/interested/{mid}', 'MarketingController@interested')->name('marketing.interested');
+    Route::post('/marketing/add', 'MarketingController@store')->name('marketing.store');
+    Route::post('/marketing-comment/add/{mid}', 'MarketingController@storeComment')->name('marketing.comment.store');
 
 
 });

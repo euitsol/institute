@@ -67,7 +67,7 @@
 {{--                                        </td>--}}
                                     </tr>
                                     @foreach($m->comments as $mc)
-                                        <tr class="d-none child-row {{$m->id}}">
+                                        <tr class="child-row {{$m->id}}" style="background-color: #f5f0ed;">
                                             <td></td>
                                             <td>{{$mc->converse_with}}</td>
                                             <td>{{$mc->date}}</td>
@@ -87,20 +87,30 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('assets/vendor/data-table/js/jquery-3.3.1.js') }}"></script>
+{{--    <script src="{{ asset('assets/vendor/data-table/js/jquery-3.3.1.js') }}"></script>--}}
     {{--    <script src="{{ asset('assets/vendor/data-table/js/jquery.dataTables.min.js') }}"></script>--}}
     {{--    <script>--}}
     {{--        $('#table').DataTable();--}}
     {{--    </script>--}}
     <script>
-        $(document).on('click', '.tr', function () {
-            var a = $(this).attr('dataID');
-            if ($('.' + a).hasClass('d-none')) {
-                $('.child-row').addClass('d-none');
-                $('.' + a).removeClass('d-none');
-            } else {
-                $('.child-row').addClass('d-none');
-            }
-        })
+        $(function () {
+            $('.child-row').fadeOut(1);
+            $('.tr').on('click', function(){
+                var a = $(this).attr('dataID');
+                $(".child-row").not('.' + a).fadeOut(1);
+                $('.' + a).fadeToggle("slow");
+            });
+        });
+
+
+        // $(document).on('click', '.tr', function () {
+        //     var a = $(this).attr('dataID');
+        //     if ($('.' + a).hasClass('d-none')) {
+        //         $('.child-row').addClass('d-none');
+        //         $('.' + a).removeClass('d-none');
+        //     } else {
+        //         $('.child-row').addClass('d-none');
+        //     }
+        // })
     </script>
 @endpush

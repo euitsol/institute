@@ -43,7 +43,7 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Next Conversation Date</th>
+{{--                                    <th>Next Conversation Date</th>--}}
                                     <th>Mobile</th>
                                     <th>Email</th>
                                     <th>Interested Course</th>
@@ -53,7 +53,7 @@
                                 @forelse ($marketings as $m)
                                     <tr>
                                         <td>{{ $m->name }}</td>
-                                        <td>{{ date('jS, F, Y', strtotime($m->next_date)) }}</td>
+{{--                                        <td>{{ date('jS, F, Y', strtotime($m->next_date)) }}</td>--}}
                                         <td>{{ $m->mobile }}</td>
                                         <td>{{ $m->email }}</td>
                                         <td>{{ $m->course }}</td>

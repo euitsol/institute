@@ -4,13 +4,7 @@
     <list default="true" id="118be9e3-77ed-4f32-b7ee-f5f2ad229df8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MarketingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MarketingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_17_193558_create_marketings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_17_193558_create_marketings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/marketing/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/marketing/admittedList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/admittedList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/marketing/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/marketing/notInterestedList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/notInterestedList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/marketing/admittedListSearch.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/admittedListSearch.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,7 +329,7 @@
       <workItem from="1582010442702" duration="153000" />
       <workItem from="1582010616306" duration="7479000" />
       <workItem from="1582020095809" duration="10772000" />
-      <workItem from="1582093012973" duration="10639000" />
+      <workItem from="1582093012973" duration="11991000" />
     </task>
     <servers />
   </component>

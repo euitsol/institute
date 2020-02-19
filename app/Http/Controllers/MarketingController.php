@@ -35,6 +35,7 @@ class MarketingController extends Controller
     {
         $marketings = Marketing::where('status', 'admitted')->orderBy('created_at', 'desc')->get();
         foreach ($marketings as $m) {
+            $m['course'] = Course::find($m->course_id)->title;
             $m['comments'] = Marketingcomment::where('marketing_id', $m->id)->get();
         }
         $courses = Course::where('type', 'Professional')->get();

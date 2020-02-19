@@ -18,12 +18,16 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="float-left">Teacher Payment</h4>
-                        <div class="float-right">
+                <div class="card" id="print">
+                    <div class="card-header text-center">
+                        <span class="float-left"><h4>Teacher Payment</h4></span>
+                        {{--                        <h4 class="float-left">Teacher Payment</h4>--}}
+                        <button type="button" onclick="printT('print')"
+                                class="btn btn-dark btn-sm hide"><i class="fa fa-print"></i>
+                        </button>
+                        <span class="float-right hide">
                             <a href="{{ url()->previous() }}" class="btn btn-info btn-sm">Back</a>
-                        </div>
+                        </span>
                     </div>
 
                     <div class="card-body">
@@ -104,8 +108,8 @@
                                         <input type="hidden" name="tpiid" value="{{ $tpi->id }}">
                                         <input type="hidden" name="_total_due"
                                                value="{{ ($total_students * $tpi->per_student_payment) - ($tpi->teacher_payments->sum('amount')) }}">
-                                        <div class="form-group row">
-                                            <label for="now_payment" class="col-sm-4 font-weight-bold">Now
+                                        <div class="form-group row hide">
+                                            <label for="now_payment" class="col-sm-4 font-weight-bold">New
                                                 Payment</label>
                                             <div class="col-sm-8">
                                                 <input type="number" name="amount" value="{{ old('amount') }}"
@@ -116,7 +120,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row hide">
                                             <label for="" class="col-sm-4"></label>
                                             <div class="col-sm-8">
                                                 <input type="submit" value="Submit" class="btn btn-primary">
@@ -155,5 +159,15 @@
 @endsection
 
 @push('js')
-
+    <script>
+        function printT(el) {
+            var rp = document.body.innerHTML;
+            $(".hide").addClass('d-none');
+            var pc = document.getElementById(el).innerHTML;
+            document.body.innerHTML = pc;
+            document.title = 'teacher-pay';
+            window.print();
+            document.body.innerHTML = rp;
+        }
+    </script>
 @endpush

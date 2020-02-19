@@ -30,7 +30,7 @@
                         <div class="clearfix">
                             <p class="float-left">
                                 <i class="fa fa-money-bill"></i>
-                                @if($x = 'all')
+                                @if($user == 'all')
                                     Transactions of all users
                                 @else
                                     Transactions By <b>{{ $user->name }}</b>
@@ -39,7 +39,7 @@
                             <p class="float-right"><b>Date : </b> {{ date('D d F, Y') }}</p>
                         </div>
 
-                        @if ($payments->count() > 0)
+                        @if (!empty($payments))
 
                             @php($total = 0)
 

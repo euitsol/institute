@@ -36,7 +36,7 @@
 
                                     <div class="form-group">
                                         <label for="user">User <span class="text-danger">*</span> </label>
-                                        <select name="user" id="user" class="form-control">
+                                        <select name="user" id="user" class="form-control" required>
                                             <option value="all">All</option>
                                             @if ($users->count() > 0)
                                                 @foreach ($users as $user)
@@ -62,6 +62,19 @@
                                         <input type="text" name="to_date" id="to_date" autocomplete="off" readonly="readonly" class="form-control">
                                         @if ($errors->has('to_date'))
                                             <span class="text-danger">{{ $errors->first('to_date') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="type">Type <span class="text-danger">*</span> </label>
+                                        <select name="type" class="form-control" required>
+                                            <option selected hidden value="all">All</option>
+                                            <option value="all">All</option>
+                                            <option value="Industrial">Industrial</option>
+                                            <option value="Professional">Professional</option>
+                                        </select>
+                                        @if ($errors->has('type'))
+                                            <span class="text-danger">{{ $errors->first('type') }}</span>
                                         @endif
                                     </div>
 

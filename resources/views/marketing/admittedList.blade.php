@@ -2,18 +2,41 @@
 
 @section('title', 'Default Marketing List - European IT Solutions Institute')
 
-@push('css')
-    <link rel="stylesheet" href="{{ asset('assets/vendor/data-table/css/jquery.dataTables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/data-table/css/buttons.dataTables.min.css') }}">
-@endpush
+{{--@push('css')--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/vendor/data-table/css/jquery.dataTables.min.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/vendor/data-table/css/buttons.dataTables.min.css') }}">--}}
+{{--@endpush--}}
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-12">
                 <div class="card">
+                    <div class="card-body">
+                        <form action="{{route('marketing.admitted.search')}}" class="form-inline" method="post">
+                            @csrf
+                            <div class="form-group mx-sm-3 mb-2">
+                                <input type="date" class="form-control" name="fromDate" value="{{date('Y-m-01')}}" required>
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <input type="date" class="form-control" name="toDate" value="{{date('Y-m-d')}}" required>
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <select class="form-control" name="course" required>
+                                    <option selected value="all">All</option>
+                                    @foreach ($courses as $c)
+                                        <option value="{{ $c->id }}">{{ $c->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary mb-2 ml-2">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
                     <div class="card-header">
-                        <h4>Default Marketing List</h4>
+                        <h4>Admitted Marketing List</h4>
                         {{--                        <input type="text" name="search">--}}
                         {{--                        <button id="search-submit">Search</button>--}}
                     </div>
@@ -65,6 +88,12 @@
 {{--                                                </a>--}}
 {{--                                            </div>--}}
 {{--                                        </td>--}}
+                                    </tr>
+                                    <tr class="child-row {{$m->id}}" style="background-color: #f5f0ed;">
+                                        <th></th>
+                                        <th>Converse With</th>
+                                        <th>Conversation Date</th>
+                                        <th colspan="2">Comment</th>
                                     </tr>
                                     @foreach($m->comments as $mc)
                                         <tr class="child-row {{$m->id}}" style="background-color: #f5f0ed;">

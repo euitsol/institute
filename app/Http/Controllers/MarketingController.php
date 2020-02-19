@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Marketing;
 use App\Models\Marketingcomment;
 use Illuminate\Http\Request;
@@ -22,9 +23,11 @@ class MarketingController extends Controller
         $datalist['converse_with'] = DB::select(DB::raw('SELECT converse_with FROM marketingcomments GROUP BY converse_with'));
         $marketings = Marketing::where('status', null)->orderBy('created_at', 'desc')->get();
         foreach ($marketings as $m) {
+            $m['course'] = Course::find($m->course_id)->title;
             $m['comments'] = Marketingcomment::where('marketing_id', $m->id)->get();
         }
-        return view('marketing.list', compact('marketings', 'datalist'));
+        $courses = Course::where('type', 'Professional')->get();
+        return view('marketing.list', compact('marketings', 'datalist', 'courses'));
     }
 
 
@@ -34,7 +37,8 @@ class MarketingController extends Controller
         foreach ($marketings as $m) {
             $m['comments'] = Marketingcomment::where('marketing_id', $m->id)->get();
         }
-        return view('marketing.admittedList', compact('marketings'));
+        $courses = Course::where('type', 'Professional')->get();
+        return view('marketing.admittedList', compact('marketings', 'courses'));
     }
 
 
@@ -42,17 +46,19 @@ class MarketingController extends Controller
     {
         $marketings = Marketing::where('status', 'not-interested')->orderBy('created_at', 'desc')->get();
         foreach ($marketings as $m) {
+            $m['course'] = Course::find($m->course_id)->title;
             $m['comments'] = Marketingcomment::where('marketing_id', $m->id)->get();
         }
-        return view('marketing.notInterestedList', compact('marketings'));
+        $courses = Course::where('type', 'Professional')->get();
+        return view('marketing.notInterestedList', compact('marketings', 'courses'));
     }
 
 
     public function create()
     {
-        $datalist['course'] = DB::select(DB::raw('SELECT course FROM marketings GROUP BY course'));
+        $courses = Course::where('type', 'Professional')->get();
         $datalist['converse_with'] = DB::select(DB::raw('SELECT converse_with FROM marketingcomments GROUP BY converse_with'));
-        return view('marketing.add', compact('datalist'));
+        return view('marketing.add', compact('courses', 'datalist'));
     }
 
 
@@ -73,7 +79,7 @@ class MarketingController extends Controller
         try {
             $m = new Marketing;
             $m->name = $request->name;
-            $m->course = $request->course;
+            $m->course_id = $request->course;
             $m->mobile = $request->mobile;
             $m->email = $request->email;
             $m->address = $request->address;
@@ -186,5 +192,107 @@ class MarketingController extends Controller
         Session::flash('success', "The marketing info has been moved to default list successfully.");
         return redirect()->back();
     }
+
+
+    public function defaultSearch(Request $request)
+    {
+        $request->validate([
+            'fromDate' => 'required|date',
+            'toDate' => 'required|date|after_or_equal:fromDate',
+            'course' => 'required',
+        ]);
+        $mcs = Marketingcomment::whereBetween('date', [$request->fromDate, $request->toDate])->groupBy('marketing_id')->get();
+        $marketings = [];
+        if ($request->course == 'all') {
+            foreach ($mcs as $mc) {
+                $a = Marketing::where('id', $mc->marketing_id)->where('status', null)->first();
+                if ($a != null) {
+                    $marketings[] = $a;
+                }
+            }
+        } else {
+            foreach ($mcs as $mc) {
+                $a = Marketing::where('id', $mc->marketing_id)->where('course_id', $request->course)->where('status', null)->first();
+                if ($a != null){
+                    $marketings[] = $a;
+                }
+            }
+        }
+        if (!empty($marketings)) {
+            foreach ($marketings as $m) {
+                $m['course'] = Course::find($m->course_id)->title;
+            }
+        }
+        return view('marketing.listSearch', compact('marketings'));
+    }
+
+
+    public function notInterestedSearch(Request $request)
+    {
+        $request->validate([
+            'fromDate' => 'required|date',
+            'toDate' => 'required|date|after_or_equal:fromDate',
+            'course' => 'required',
+        ]);
+        $mcs = Marketingcomment::whereBetween('date', [$request->fromDate, $request->toDate])->groupBy('marketing_id')->get();
+        $marketings = [];
+        if ($request->course == 'all') {
+            foreach ($mcs as $mc) {
+                $a = Marketing::where('id', $mc->marketing_id)->where('status', 'not-interested')->first();
+                if ($a != null) {
+                    $marketings[] = $a;
+                }
+            }
+        } else {
+            foreach ($mcs as $mc) {
+                $a = Marketing::where('id', $mc->marketing_id)->where('course_id', $request->course)->where('status', 'not-interested')->first();
+                if ($a != null) {
+                    $marketings[] = $a;
+                }
+            }
+        }
+        if (!empty($marketings)) {
+            foreach ($marketings as $m) {
+                $m['course'] = Course::find($m->course_id)->title;
+            }
+        }
+        return view('marketing.notInterestedListSearch', compact('marketings'));
+    }
+
+
+    public function admittedSearch(Request $request)
+    {
+        $request->validate([
+            'fromDate' => 'required|date',
+            'toDate' => 'required|date|after_or_equal:fromDate',
+            'course' => 'required',
+        ]);
+        $mcs = Marketingcomment::whereBetween('date', [$request->fromDate, $request->toDate])->groupBy('marketing_id')->get();
+        $marketings = [];
+        if ($request->course == 'all') {
+            foreach ($mcs as $mc) {
+                $a = Marketing::where('id', $mc->marketing_id)->where('status', 'admitted')->first();
+                if ($a != null) {
+                    $marketings[] = $a;
+                }
+            }
+        } else {
+            foreach ($mcs as $mc) {
+                $a = Marketing::where('id', $mc->marketing_id)->where('course_id', $request->course)->where('status', 'admitted')->first();
+                if ($a != null) {
+                    $marketings[] = $a;
+                }
+            }
+        }
+        if (!empty($marketings)) {
+            foreach ($marketings as $m) {
+                $m['course'] = Course::find($m->course_id)->title;
+            }
+        }
+        return view('marketing.admittedListSearch', compact('marketings'));
+    }
+
+
+
 
 }

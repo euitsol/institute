@@ -12,7 +12,7 @@ class CreateMarketingsTable extends Migration
         Schema::create('marketings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('course');
+            $table->integer('course_id');
             $table->string('mobile');
             $table->string('email');
             $table->string('address');

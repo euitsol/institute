@@ -220,6 +220,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/marketing/interested/{mid}', 'MarketingController@interested')->name('marketing.interested');
     Route::post('/marketing/add', 'MarketingController@store')->name('marketing.store');
     Route::post('/marketing-comment/add/{mid}', 'MarketingController@storeComment')->name('marketing.comment.store');
+    Route::post('/marketing-default/search', 'MarketingController@defaultSearch')->name('marketing.default.search');
+    Route::post('/marketing-not-interested/search', 'MarketingController@notInterestedSearch')->name('marketing.notInterested.search');
+    Route::post('/marketing-admitted/search', 'MarketingController@admittedSearch')->name('marketing.admitted.search');
 
 
 });

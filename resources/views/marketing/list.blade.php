@@ -2,20 +2,43 @@
 
 @section('title', 'Default Marketing List - European IT Solutions Institute')
 
-@push('css')
-    <link rel="stylesheet" href="{{ asset('assets/vendor/data-table/css/jquery.dataTables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/data-table/css/buttons.dataTables.min.css') }}">
+{{--@push('css')--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/vendor/data-table/css/jquery.dataTables.min.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('assets/vendor/data-table/css/buttons.dataTables.min.css') }}">--}}
     {{--    <style>--}}
     {{--        * {--}}
     {{--            transition: all 3s !important;--}}
     {{--        }--}}
     {{--    </style>--}}
-@endpush
+{{--@endpush--}}
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{route('marketing.default.search')}}" class="form-inline" method="post">
+                            @csrf
+                            <div class="form-group mx-sm-3 mb-2">
+                                <input type="date" class="form-control" name="fromDate" value="{{date('Y-m-01')}}" required>
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <input type="date" class="form-control" name="toDate" value="{{date('Y-m-d')}}" required>
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <select class="form-control" name="course" required>
+                                    <option selected value="all">All</option>
+                                    @foreach ($courses as $c)
+                                        <option value="{{ $c->id }}">{{ $c->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary mb-2 ml-2">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <br>
                 <div class="card">
                     <div class="card-header">
                         <h4>Default Marketing List</h4>
@@ -73,15 +96,28 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr class="child-row {{$m->id}}" style="background-color: #f5f0ed;">
+                                        <th></th>
+                                        <th>Conversation Date</th>
+                                        <th>Converse With</th>
+                                        <th colspan="4">Comment</th>
+                                    </tr>
                                     @foreach($m->comments as $mc)
                                         <tr class="child-row {{$m->id}}" style="background-color: #f5f0ed;">
                                             <td></td>
-                                            <td>{{$mc->converse_with}}</td>
                                             <td>{{date('jS, F, Y', strtotime($mc->date))}}</td>
+                                            <td>{{$mc->converse_with}}</td>
                                             <td colspan="4">{{$mc->comment}}</td>
                                             {{--                                            <td></td>--}}
                                         </tr>
                                     @endforeach
+                                    <tr class="child-row {{$m->id}}" style="background-color: #f5f0ed;">
+                                        <th>Conversation Date</th>
+                                        <th>Next Conversation Date</th>
+                                        <th>Converse With</th>
+                                        <th colspan="3">Comment</th>
+                                        <th></th>
+                                    </tr>
                                     <tr class="child-row {{$m->id}}" style="background-color: #f5f0ed;">
                                         <form action="{{route('marketing.comment.store', ['mid' => $m->id])}}"
                                               method="post">
@@ -90,11 +126,11 @@
                                                 <input type="date" class="form-control" name="date" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="converseWith" required
-                                                       list="converseWith">
+                                                <input type="date" class="form-control" name="nextDate" required>
                                             </td>
                                             <td>
-                                                <input type="date" class="form-control" name="nextDate" required>
+                                                <input type="text" class="form-control" name="converseWith" required
+                                                       list="converseWith">
                                             </td>
                                             <td colspan="3">
                                                 <textarea cols="30" rows="3" style="width: 100%;" class="form-control"
@@ -133,13 +169,12 @@
     <script>
         $(function () {
             $('.child-row').fadeOut(1);
-            $('.tr').on('click', function(){
+            $('.tr').on('click', function () {
                 var a = $(this).attr('dataID');
                 $(".child-row").not('.' + a).fadeOut(1);
                 $('.' + a).fadeToggle("slow");
             });
         });
-
 
 
         // $(document).on('click', '.tr', function () {

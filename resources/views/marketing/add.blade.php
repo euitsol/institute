@@ -39,8 +39,12 @@
                                     <div class="form-group row">
                                         <label class="col-md-3 form-control-label">Interested Course</label>
                                         <div class="col-md-9">
-                                            <input type="text" name="course" value="{{ old('course') }}" list="course"
-                                                   class="form-control form-control-success" required>
+                                            <select name="course" class="form-control form-control-success" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                @foreach ($courses as $c)
+                                                    <option value="{{ $c->id }}">{{ $c->title }}</option>
+                                                @endforeach
+                                            </select>
                                             @if ($errors->has('course'))
                                                 <span class="text-danger">{{ $errors->first('course') }}</span>
                                             @endif
@@ -130,12 +134,6 @@
             </div>
         </div>
     </div>
-    <datalist id="course">
-        @forelse($datalist['course'] as $c)
-            <option value="{{$c->course}}">
-        @empty
-        @endforelse
-    </datalist>
     <datalist id="converseWith">
         @forelse($datalist['converse_with'] as $cw)
             <option value="{{$cw->converse_with}}">

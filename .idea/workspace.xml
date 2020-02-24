@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="118be9e3-77ed-4f32-b7ee-f5f2ad229df8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MarketingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MarketingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/marketing/admittedListSearch.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/admittedListSearch.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/report/students_by_institute.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report/students_by_institute.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +156,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HR" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sferp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -329,7 +331,13 @@
       <workItem from="1582010442702" duration="153000" />
       <workItem from="1582010616306" duration="7479000" />
       <workItem from="1582020095809" duration="10772000" />
-      <workItem from="1582093012973" duration="11991000" />
+      <workItem from="1582093012973" duration="13095000" />
+      <workItem from="1582116744972" duration="147000" />
+      <workItem from="1582180248477" duration="3087000" />
+      <workItem from="1582359644510" duration="1323000" />
+      <workItem from="1582429743952" duration="827000" />
+      <workItem from="1582430617911" duration="632000" />
+      <workItem from="1582519669682" duration="3953000" />
     </task>
     <servers />
   </component>
@@ -366,10 +374,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581948608699" />
-    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1582102563386">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1582520476494">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1582102563386" />
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1582520476494" />
     <state x="461" y="163" key="SettingsEditor" timestamp="1582020036149">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -382,5 +390,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="646" y="236" width="627" height="568" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582104580376" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/ReportController.php</url>
+          <line>195</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\ReportController" />
+            <option name="methodName" value="studentsByInstitute" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/ReportController.php</url>
+          <line>200</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

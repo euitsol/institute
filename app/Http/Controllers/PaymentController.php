@@ -43,8 +43,8 @@ class PaymentController extends Controller
             return redirect()->back()->withInput();
         }
 
-        if ($request->amount <= 0) {
-            $this->message('error', 'Amount can not be minus or zero.');
+        if ($request->amount < 0) {
+            $this->message('error', 'Amount can not be minus.');
             return redirect()->back()->withInput();
         }
 

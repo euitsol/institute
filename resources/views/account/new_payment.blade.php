@@ -16,12 +16,9 @@
                            class="btn btn-info btn-sm">Back</a>
                     </span>
                     </div>
-
                     <div class="card-body">
-
                         <div class="row">
                             <div class="col-md-8">
-
                                 @if(session('success'))
                                     <p class="alert alert-success text-center">
                                         {{ session('success') }}
@@ -31,58 +28,44 @@
                                         {{ session('error') }}
                                     </p>
                                 @endif
-
                                 @if($errors->has('installment_date.*'))
                                     <p class="alert alert-danger text-center">
                                         The installment date fields are required
                                     </p>
                                 @endif
-
                                 <form action="{{ route('payment.new.receive') }}" method="POST" class="form-horizontal">
                                     @csrf
-
                                     <input type="hidden" name="student_id" value="{{ $student->id }}">
                                     <input type="hidden" name="course_id" value="{{ $course->id }}">
-
                                     <div class="form-group row">
                                         <label class="col-md-3 form-control-label">Course Fee</label>
                                         <div class="col-md-9">{{$course->fee}} TK</div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label class="col-md-3 form-control-label">Discount</label>
                                         <div class="col-md-9">
-
                                             <label for="discount_yes" class="mr-2">
                                                 <input type="radio" name="discount_radio" id="discount_yes" value="yes">
                                                 Yes</label>
-
                                             <label for="discount_no">
                                                 <input type="radio" name="discount_radio" id="discount_no" value="no"
                                                        checked> No</label>
-
                                             <div class="input-group" id="discount" style="display: none">
-
                                                 <input type="number" name="discount_percent" id="discount_percent"
                                                        value="{{ old('discount_percent') }}" min="0"
                                                        placeholder="Percent"
                                                        class="form-control">
-
                                                 <div class="input-group-append">
                                                     <span class="input-group-text"
                                                           style="width: 36px !important;">%</span>
                                                 </div>
-
                                                 <span class="ml-2 mr-2 mt-2">OR</span>
-
                                                 <input type="number" name="discount_amount" id="discount_amount"
                                                        value="{{ old('discount_amount') }}" min="0" placeholder="Amount"
                                                        class="form-control">
                                             </div>
-
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label class="col-md-3 form-control-label">Total Fee</label>
                                         <div class="col-md-9">
@@ -90,31 +73,24 @@
                                             <input type="hidden" name="total_fee" id="_total_fee">
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label class="col-md-3 form-control-label">Payment Method</label>
                                         <div class="col-md-9">
-
                                             <label for="method_installment" class="mr-2">
                                                 <input type="radio" name="method_radio" id="method_installment"
                                                        value="installment"> Installment</label>
-
                                             <label for="method_fullPayment">
                                                 <input type="radio" name="method_radio" id="method_fullPayment"
                                                        value="full_payment" checked> Full Payment</label>
-
                                             <div class="input-group w-50" id="payment_method" style="display: none">
-
                                                 <input type="number" name="installment_quantity"
                                                        id="installment_quantity"
                                                        value="{{ old('installment_quantity') }}" min="0"
                                                        placeholder="How many installment"
                                                        class="form-control form-control-sm">
                                             </div>
-
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="" class="col-md-3 form-control-label"> Amount </label>
                                         <div class="col-md-9">
@@ -125,12 +101,10 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         {{-- Installment Dates --}}
                                         <div id="installment_dates"></div>
                                     </div>
-
                                     <div class="form-group row">
                                         <div class="col-md-9 ml-auto">
                                             <input type="submit" value="Submit" class="btn btn-primary">
@@ -181,7 +155,6 @@
                                 </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

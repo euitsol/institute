@@ -244,6 +244,12 @@
                 <div id="marketing" class="collapse">
                     <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
                         <li class="sidebar-list-item">
+                            <a href="{{route('marketing.list.today')}}"
+                               class="sidebar-link text-muted ">
+                                <i class="fas fa-minus text-gray"></i><span>Today</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-list-item">
                             <a href="{{route('marketing.list')}}"
                                class="sidebar-link text-muted ">
                                 <i class="fas fa-minus text-gray"></i><span>Default List</span>

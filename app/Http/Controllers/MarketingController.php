@@ -295,5 +295,17 @@ class MarketingController extends Controller
 
 
 
+    public function today()
+    {
+        $marketings = Marketing::whereRaw('DAYOFYEAR(curdate()) =  dayofyear(next_date)')->get();
+        if (count($marketings) > 0){
+            foreach ($marketings as $m) {
+                $m['course'] = Course::find($m->course_id)->title;
+                $m['comments'] = Marketingcomment::where('marketing_id', $m->id)->get();
+            }
+        }
+        return view('marketing.today', compact('marketings'));
+    }
+
 
 }

@@ -223,6 +223,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/marketing-default/search', 'MarketingController@defaultSearch')->name('marketing.default.search');
     Route::post('/marketing-not-interested/search', 'MarketingController@notInterestedSearch')->name('marketing.notInterested.search');
     Route::post('/marketing-admitted/search', 'MarketingController@admittedSearch')->name('marketing.admitted.search');
+    Route::get('/marketing/today-conversation-list', 'MarketingController@today')->name('marketing.list.today');
 
     Route::post('/sms-student-institute/{iid}', 'ReportController@instituteSms')->name('sms.student.institute');
 

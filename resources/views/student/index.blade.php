@@ -16,6 +16,9 @@
                     <span class="float-left">
                         <h4> {{$student_as}} Students <span class="badge badge-blue">{{$students->count()}}</span> </h4>
                     </span>
+                    @if($totalStudents)
+                        <h6 class="float-right"> Total Students {{count($totalStudents)}}</h6>
+                    @endif
                     </div>
 
                     <div class="card-body">
@@ -39,7 +42,8 @@
                                             <select id="year" class="form-control form-control-sm">
                                                 <option value="">Choose...</option>
                                                 @foreach ($years as $_year)
-                                                    <option value="{{ $_year->year }}" {{ $year == $_year->year ? 'selected' : '' }}>
+                                                    <option
+                                                        value="{{ $_year->year }}" {{ $year == $_year->year ? 'selected' : '' }}>
                                                         {{ $_year->year }}
                                                     </option>
                                                 @endforeach

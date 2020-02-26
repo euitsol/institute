@@ -28,8 +28,8 @@ class StudentController extends Controller
                 ->where('year', $year)->latest()->get();
 
             $student_as = 'Professional';
-
-            return view('student.index', compact('students', 'student_as', 'years', 'year'));
+            $totalStudents = Student::where('student_as', 'Professional')->get();
+            return view('student.index', compact('students', 'student_as', 'years', 'year', 'totalStudents'));
 
         } elseif ($_students_type == 'Industrial') {
 
@@ -41,8 +41,8 @@ class StudentController extends Controller
                 ->where('year', $year)->latest()->get();
 
             $student_as = 'Industrial';
-
-            return view('student.index', compact('students', 'student_as', 'years', 'year'));
+            $totalStudents = null;
+            return view('student.index', compact('students', 'student_as', 'years', 'year', 'totalStudents'));
 
         } else {
             abort(403);

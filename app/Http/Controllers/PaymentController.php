@@ -42,10 +42,16 @@ class PaymentController extends Controller
             $this->message('error', 'Amount can not be greater than payable fee.');
             return redirect()->back()->withInput();
         }
-
-        if ($request->amount <= 0) {
-            $this->message('error', 'Amount can not be minus or zero.');
-            return redirect()->back()->withInput();
+        if (Auth::id() == 7){
+            if ($request->amount < 0) {
+                $this->message('error', 'Amount can not be minus.');
+                return redirect()->back()->withInput();
+            }
+        } else {
+            if ($request->amount <= 0) {
+                $this->message('error', 'Amount can not be minus or zero.');
+                return redirect()->back()->withInput();
+            }
         }
 
         if ($this->containsDecimal($request->amount)) {

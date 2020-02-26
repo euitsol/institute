@@ -14,9 +14,7 @@
                     <div class="card-header">
                         <h4> Institute Students Report </h4>
                     </div>
-
                     <div class="card-body">
-
                         @if(session('success'))
                             <p class="alert alert-success text-center">
                                 {{ session('success') }}
@@ -26,7 +24,6 @@
                                 {{ session('error') }}
                             </p>
                         @endif
-
                         <div class="clearfix mb-3">
                             <div class="float-left">
                                 <button type="button" onclick="printT('print_content', '{{$institute->name}}')"
@@ -44,7 +41,6 @@
                                 </h4>
                             </div>
                         </div>
-
                         <div id="print_content">
                             @if ($students->count() > 0)
                                 <div style="margin-top: 40px">
@@ -60,9 +56,7 @@
                                             Noor Mansion (3rd Floor), Plot#04, Main Road#01, Mirpur-10, Dhaka-1216
                                         </div>
                                     </div>
-
                                     <h4 class="mb-4 text-center">{{$institute->name}}</h4>
-
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <tr>
@@ -93,8 +87,21 @@
                                 </div>
                             @endif
                         </div>
-
                     </div>
+                </div>
+                <div class="card-body">
+                    @if(count($students) > 0)
+                        <form action="{{route('sms.student.institute', ['iid' => $institute->id])}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sms" required>
+                                @if($errors->has('sms'))
+                                    <span class="help-block text-danger">{{$errors->first('sms')}}</span>
+                                @endif
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary">Send SMS</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>

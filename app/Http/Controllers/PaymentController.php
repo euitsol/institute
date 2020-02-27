@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\InstallmentDate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
 {
@@ -331,5 +332,28 @@ class PaymentController extends Controller
         }
         return view('account.payment_history', compact('student'));
     }
+
+
+    public function anytimeDiscount(Request $request, $aid)
+    {
+        $request->validate([
+            '_due' => 'required',
+            'discount' => 'required'
+        ]);
+        if ($request->discount <= $request->_due){
+            $a = Account::find($aid);
+            if (($a->discount_percent * 1) != 0){
+                $a->discount_percent = 0;
+            }
+            $a->discount_amount = $request->discount;
+            $a->save();
+            Session::flash('success', "Discount added successfully.");
+            return redirect()->back();
+        } else {
+            Session::flash('error', "Discount is grater than due amount.");
+            return redirect()->back();
+        }
+    }
+
 
 }

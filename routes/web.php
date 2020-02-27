@@ -195,6 +195,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/account/payment/installment', 'PaymentController@installmentReceive')->name('payment.installment');
     Route::get('/account/payment/{aid}/receipt', 'PaymentController@paymentReceipt')->name('payment.receipt');
     Route::get('/student/{sid}/payment/history', 'PaymentController@studentPaymentHistory')->name('student.payment.history');
+    Route::post('/account/payment/anytime-discount/{aid}', 'PaymentController@anytimeDiscount')->name('anytime.discount');
 
     Route::get('/daily-report', 'DailyreportController@index')->name('daily.report');
     Route::get('/daily-report/ajax', 'DailyreportController@drajax');

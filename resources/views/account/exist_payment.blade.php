@@ -24,12 +24,9 @@
                            class="btn btn-info btn-sm">Back</a>
                     </span>
                     </div>
-
                     <div class="card-body">
-
                         <div class="row">
                             <div class="col-md-8">
-
                                 @if(session('success'))
                                     <p class="alert alert-success text-center">
                                         {{ session('success') }}
@@ -39,7 +36,6 @@
                                         {{ session('error') }}
                                     </p>
                                 @endif
-
                                 <table class="table table-borderless">
                                     <tr>
                                         <td>Course Fee</td>
@@ -85,7 +81,8 @@
                                                         <tr>
                                                             <td>{{ date('D d M, Y', strtotime($date)) }}</td>
                                                             <td>:</td>
-                                                            <td>{{ number_format(ceil($installment_amount), 2) }} Tk</td>
+                                                            <td>{{ number_format(ceil($installment_amount), 2) }}Tk
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 </table>
@@ -93,24 +90,22 @@
                                         </tr>
                                     @endif
                                 </table>
-
                                 @if (optional($payments)->sum('amount') < $total_fee)
                                     <form action="{{ route('payment.installment') }}" method="post" class="mt-4">
                                         @csrf
-
                                         <input type="hidden" name="account_id" value="{{ $account->id }}">
                                         <input type="hidden" name="_due" value="{{ $due }}">
-
                                         <div class="row">
                                             <div class="col-md-8 offset-md-2">
-
                                                 <div class="form-group row">
                                                     <label for="" class="col-md-5">Installment Amount</label>
                                                     <div class="col-md-7">
-                                                        <input type="number" name="amount" id="installment_amount" min="0"
+                                                        <input type="number" name="amount" id="installment_amount"
+                                                               min="0"
                                                                class="form-control form-control-sm">
                                                         @if ($errors->has('amount'))
-                                                            <span class="text-danger d-block">{{ $errors->first('amount') }}</span>
+                                                            <span
+                                                                class="text-danger d-block">{{ $errors->first('amount') }}</span>
                                                         @endif
                                                         <div class="mt-2">
                                                             <a href="javascript:void(0)" id="new_installment_button">
@@ -120,26 +115,27 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row" id="installment_quantity_wrapper" style="display: none;">
-                                                    <label for="installment_quantity" class="col-md-5">Installment Quantity</label>
+                                                <div class="form-group row" id="installment_quantity_wrapper"
+                                                     style="display: none;">
+                                                    <label for="installment_quantity" class="col-md-5">Installment
+                                                        Quantity</label>
                                                     <div class="col-md-7">
-                                                        <input type="number" name="installment_quantity" value="{{ old('installment_quantity') }}" id="installment_quantity" min="0" class="form-control form-control-sm">
+                                                        <input type="number" name="installment_quantity"
+                                                               value="{{ old('installment_quantity') }}"
+                                                               id="installment_quantity" min="0"
+                                                               class="form-control form-control-sm">
                                                     </div>
                                                 </div>
-
                                                 {{--Installment new dates--}}
                                                 <div id="installment_dates"></div>
-                                                
                                                 <div class="form-group row">
                                                     <div class="col-md-5"></div>
                                                     <div class="col-md-7">
                                                         <input type="submit" value="Submit" class="btn btn-primary">
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-
                                     </form>
                                 @endif
 
@@ -227,9 +223,28 @@
                                         </tr>
                                     @endif
                                 </table>
+                                @if(Auth::id() == 7)
+                                    <hr>
+                                    <form action="{{route('anytime.discount', ['aid' => $account->id])}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="_due" value="{{ $due }}" required>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <input type="number" placeholder="Discount Amount" min="0"
+                                                       name="discount"
+                                                       class="form-control form-control-sm" max="{{$due}}"
+                                                       step="0.01" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="submit" class="btn btn-sm btn-outline-dark mt-1">
+                                                    Discount
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                @endif
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

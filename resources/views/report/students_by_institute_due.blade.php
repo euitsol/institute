@@ -97,20 +97,20 @@
                         </div>
                     </div>
                 </div>
-{{--                <div class="card-body">--}}
-{{--                    @if(count($students) > 0)--}}
-{{--                        <form action="{{route('sms.student.institute', ['iid' => $institute->id])}}" method="POST">--}}
-{{--                            @csrf--}}
-{{--                            <div class="form-group">--}}
-{{--                                <input type="text" class="form-control" name="sms" required>--}}
-{{--                                @if($errors->has('sms'))--}}
-{{--                                    <span class="help-block text-danger">{{$errors->first('sms')}}</span>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-{{--                            <button type="submit" class="btn btn-sm btn-primary">Send SMS</button>--}}
-{{--                        </form>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
+                <div class="card-body">
+                    @if(count($students) > 0)
+                        <form action="{{route('sms.student.institute.due', ['iid' => $institute->id])}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sms" required>
+                                @if($errors->has('sms'))
+                                    <span class="help-block text-danger">{{$errors->first('sms')}}</span>
+                                @endif
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary">Send SMS</button>
+                        </form>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

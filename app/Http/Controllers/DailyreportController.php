@@ -90,13 +90,15 @@ class DailyreportController extends Controller
         ]);
         $ss = Student::whereRaw('DAYOFYEAR(curdate()) =  dayofyear(dob)')->orderByRaw('DAYOFYEAR(dob)')->get();
         foreach ($ss as $s) {
+            $a = "Dear $s->name,"."\n";
+            $a .= $request->sms;
             $url = 'http://users.sendsmsbd.com/smsapi?';
             $fields = array(
                 'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
                 'type' => urlencode('text'),
                 'contacts' => urlencode($s->phone),
                 'senderid' => 'European IT',
-                'msg' => $request->sms,
+                'msg' => $a,
             );
             $fields_string = '';
             foreach ($fields as $key => $value) {

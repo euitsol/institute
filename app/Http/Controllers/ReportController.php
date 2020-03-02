@@ -437,13 +437,15 @@ class ReportController extends Controller
         $b = Batch::find($bid);
         $ss = $b->students;
         foreach ($ss as $s) {
+            $a = "Dear $s->name,"."\n";
+            $a .= $request->sms;
             $url = 'http://users.sendsmsbd.com/smsapi?';
             $fields = array(
                 'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
                 'type' => urlencode('text'),
                 'contacts' => urlencode($s->phone),
                 'senderid' => 'European IT',
-                'msg' => $request->sms,
+                'msg' => $a,
             );
             $fields_string = '';
             foreach ($fields as $key => $value) {
@@ -479,13 +481,86 @@ class ReportController extends Controller
 //        $institute = Institute::find($iid);
         $ss = Student::where('institute_id', $iid)->get();
         foreach ($ss as $s) {
+            $a = "Dear $s->name,"."\n";
+            $a .= $request->sms;
             $url = 'http://users.sendsmsbd.com/smsapi?';
             $fields = array(
                 'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
                 'type' => urlencode('text'),
                 'contacts' => urlencode($s->phone),
                 'senderid' => 'European IT',
-                'msg' => $request->sms,
+                'msg' => $a,
+            );
+            $fields_string = '';
+            foreach ($fields as $key => $value) {
+                $fields_string .= $key . '=' . $value . '&';
+            }
+            rtrim($fields_string, '&');
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_POST, count($fields));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FAILONERROR, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result = curl_exec($ch);
+            if ($result === false) {
+                $e = curl_error($ch);
+                Session::flash('error', "Something went wrong :( $e");
+                return redirect()->back();
+            }
+            curl_close($ch);
+        }
+        Session::flash('success', "Sms sent successfully.");
+        return redirect()->back();
+    }
+
+
+    public function instituteSmsDue(Request $request, $iid)
+    {
+        $request->validate([
+            'sms' => 'required',
+        ]);
+        $students = [];
+        $ss = Student::where('institute_id', $iid)->get();
+        if (isset($ss)) {
+            foreach ($ss as $student) {
+                $courses = $student->courses;
+                $accounts = $student->accounts;
+                if (isset($courses)) {
+                    foreach ($courses as $key => $course) {
+                        if (isset($accounts)) {
+                            $_account = $accounts->where('student_id', $student->id)->where('course_id', $course->id)->first();
+                            $_payments = isset($_account->payments) ? $_account->payments->sum('amount') : 0;
+                            $total_fee = $this->courseFeeCalculate($_account, $course->fee);
+                            $course['total_fee'] = $total_fee;
+                            $course['payments'] = $_payments;
+                        }
+                    }
+                }
+                if (isset($courses)) {
+                    foreach ($courses as $_k => $course) {
+                        $student['total_amount'] = $course->total_fee;
+                        $student['paid_amount'] = $course->payments;
+                        $student['due_amount'] = $course->total_fee - $course->payments;
+                    }
+                }
+                if ($student->due_amount > 0){
+                    $students[] = $student;
+                }
+            }
+        }
+        foreach ($students as $s) {
+            $a = "Dear $s->name,"."\n";
+            $a .= $request->sms;
+            $url = 'http://users.sendsmsbd.com/smsapi?';
+            $fields = array(
+                'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
+                'type' => urlencode('text'),
+                'contacts' => urlencode($s->phone),
+                'senderid' => 'European IT',
+                'msg' => $a,
             );
             $fields_string = '';
             foreach ($fields as $key => $value) {

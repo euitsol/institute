@@ -228,6 +228,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/marketing/today-conversation-list', 'MarketingController@today')->name('marketing.list.today');
 
     Route::post('/sms-student-institute/{iid}', 'ReportController@instituteSms')->name('sms.student.institute');
+    Route::post('/sms-student-institute/{iid}/due', 'ReportController@instituteSmsDue')->name('sms.student.institute.due');
 
 
 });

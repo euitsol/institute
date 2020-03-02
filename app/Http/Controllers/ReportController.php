@@ -221,7 +221,44 @@ class ReportController extends Controller
                 }
             }
         }
-        return view('report.students_by_institute', compact('institute', 'students'));
+        return view('report.students_by_institute', compact('institute', 'students', 'iid'));
+    }
+
+
+
+    public function studentsByInstituteDue($iid)
+    {
+        $institute = Institute::find($iid);
+        $students = [];
+        $ss = Student::where('institute_id', $iid)->latest()->get();
+        if (isset($ss)) {
+            foreach ($ss as $student) {
+                $courses = $student->courses;
+                $accounts = $student->accounts;
+                if (isset($courses)) {
+                    foreach ($courses as $key => $course) {
+                        if (isset($accounts)) {
+                            $_account = $accounts->where('student_id', $student->id)->where('course_id', $course->id)->first();
+                            $_payments = isset($_account->payments) ? $_account->payments->sum('amount') : 0;
+                            $total_fee = $this->courseFeeCalculate($_account, $course->fee);
+                            $course['total_fee'] = $total_fee;
+                            $course['payments'] = $_payments;
+                        }
+                    }
+                }
+                if (isset($courses)) {
+                    foreach ($courses as $_k => $course) {
+                        $student['total_amount'] = $course->total_fee;
+                        $student['paid_amount'] = $course->payments;
+                        $student['due_amount'] = $course->total_fee - $course->payments;
+                    }
+                }
+                if ($student->due_amount > 0){
+                    $students[] = $student;
+                }
+            }
+        }
+        return view('report.students_by_institute_due', compact('institute', 'students', 'iid'));
     }
 
 

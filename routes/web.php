@@ -146,6 +146,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/report/students', 'ReportController@allStudents')->name('report.students.all');
         Route::post('/report/division/institute/find', 'ReportController@divisionInstituteStudents')->name('report.division.institute.find');
         Route::get('/report/institute/{iid}/students', 'ReportController@studentsByInstitute')->name('report.institute.students');
+        Route::get('/report/institute/{iid}/students/due', 'ReportController@studentsByInstituteDue')->name('report.institute.students.due');
         Route::get('/report/division/{division}/students', 'ReportController@studentsByDivision')->name('report.division.students');
 
         Route::get('/transaction', 'ReportController@transaction')->name('transaction');

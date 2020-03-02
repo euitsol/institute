@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-12">
+            <div class="col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h4> Institute Students Report </h4>
@@ -65,6 +65,9 @@
                                                 <th>Board Roll</th>
                                                 <th>Phone</th>
                                                 <th>Courses</th>
+                                                <th>Total Fee</th>
+                                                <th>Paid</th>
+                                                <th>Due</th>
                                             </tr>
                                             @foreach ($students as $sk => $student)
                                                 <tr>
@@ -80,6 +83,9 @@
                                                             @endforeach
                                                         @endif
                                                     </td>
+                                                    <td>{{$student->total_amount}}</td>
+                                                    <td>{{$student->paid_amount}}</td>
+                                                    <td>{{$student->due_amount}}</td>
                                                 </tr>
                                             @endforeach
                                         </table>

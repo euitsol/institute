@@ -76,7 +76,7 @@ class ReportController extends Controller
             'btn' => 'required'
         ]);
         if (isset($request->course_type) && isset($request->btn)) {
-            if ('Paid' == $request->btn ) {
+            if ('Paid' == $request->btn) {
                 return redirect()->route('report.paid.students', $request->course_type);
             }
             if ('Due' == $request->btn) {
@@ -197,6 +197,30 @@ class ReportController extends Controller
     {
         $institute = Institute::find($iid);
         $students = Student::where('institute_id', $iid)->latest()->get();
+        if (isset($students)) {
+            foreach ($students as $student) {
+                $courses = $student->courses;
+                $accounts = $student->accounts;
+                if (isset($courses)) {
+                    foreach ($courses as $key => $course) {
+                        if (isset($accounts)) {
+                            $_account = $accounts->where('student_id', $student->id)->where('course_id', $course->id)->first();
+                            $_payments = isset($_account->payments) ? $_account->payments->sum('amount') : 0;
+                            $total_fee = $this->courseFeeCalculate($_account, $course->fee);
+                            $course['total_fee'] = $total_fee;
+                            $course['payments'] = $_payments;
+                        }
+                    }
+                }
+                if (isset($courses)) {
+                    foreach ($courses as $_k => $course) {
+                        $student['total_amount'] = $course->total_fee;
+                        $student['paid_amount'] = $course->payments;
+                        $student['due_amount'] = $course->total_fee - $course->payments;
+                    }
+                }
+            }
+        }
         return view('report.students_by_institute', compact('institute', 'students'));
     }
 
@@ -285,14 +309,14 @@ class ReportController extends Controller
         if (empty($uid) || empty($from_date) || empty($to_date)) {
             return redirect()->route('transaction');
         }
-        if ($uid == 'all'){
+        if ($uid == 'all') {
             $user = 'all';
             $ps = Payment::whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
                 ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
             $payments = [];
-            if ($type != 'all'){
-                foreach ($ps as $p){
-                    if (Student::find(Account::find($p->account_id)->student_id)->student_as == $type){
+            if ($type != 'all') {
+                foreach ($ps as $p) {
+                    if (Student::find(Account::find($p->account_id)->student_id)->student_as == $type) {
                         $payments[] = $p;
                     }
                 }
@@ -304,9 +328,9 @@ class ReportController extends Controller
             $ps = Payment::where('user_id', $uid)->whereDate('created_at', '>=', date('Y-m-d', strtotime($from_date)))
                 ->whereDate('created_at', '<=', date('Y-m-d', strtotime($to_date)))->get();
             $payments = [];
-            if ($type != 'all'){
-                foreach ($ps as $p){
-                    if (Student::find(Account::find($p->account_id)->student_id)->student_as == $type){
+            if ($type != 'all') {
+                foreach ($ps as $p) {
+                    if (Student::find(Account::find($p->account_id)->student_id)->student_as == $type) {
                         $payments[] = $p;
                     }
                 }
@@ -321,10 +345,10 @@ class ReportController extends Controller
                 if (isset($batch)) {
                     $payment['batch'] = batch_name($account->course->title_short_form, $batch->year, $batch->month, $batch->batch_number);
                 } else {
-                   $cm = CourseMigration::where('old_course_id', $account->course_id)
-                       ->where('student_id', $account->student_id)->first();
-                   $_batch = Batch::find($cm->old_batch_id);
-                   $payment['batch'] = batch_name($_batch->course->title_short_form, $_batch->year, $_batch->month, $_batch->batch_number);
+                    $cm = CourseMigration::where('old_course_id', $account->course_id)
+                        ->where('student_id', $account->student_id)->first();
+                    $_batch = Batch::find($cm->old_batch_id);
+                    $payment['batch'] = batch_name($_batch->course->title_short_form, $_batch->year, $_batch->month, $_batch->batch_number);
                 }
                 $payment['student_name'] = $account->student->name;
                 $payment['student_phone'] = $account->student->phone;
@@ -375,7 +399,7 @@ class ReportController extends Controller
         ]);
         $b = Batch::find($bid);
         $ss = $b->students;
-        foreach ($ss as $s){
+        foreach ($ss as $s) {
             $url = 'http://users.sendsmsbd.com/smsapi?';
             $fields = array(
                 'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
@@ -384,13 +408,13 @@ class ReportController extends Controller
                 'senderid' => 'European IT',
                 'msg' => $request->sms,
             );
-            $fields_string='';
-            foreach($fields as $key=>$value){
-                $fields_string .= $key.'='.$value.'&';
+            $fields_string = '';
+            foreach ($fields as $key => $value) {
+                $fields_string .= $key . '=' . $value . '&';
             }
             rtrim($fields_string, '&');
             $ch = curl_init();
-            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
             curl_setopt($ch, CURLOPT_POST, count($fields));
             curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
@@ -398,8 +422,7 @@ class ReportController extends Controller
             curl_setopt($ch, CURLOPT_FAILONERROR, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result = curl_exec($ch);
-            if($result === false)
-            {
+            if ($result === false) {
                 $e = curl_error($ch);
                 Session::flash('error', "Something went wrong :( $e");
                 return redirect()->back();
@@ -418,7 +441,7 @@ class ReportController extends Controller
         ]);
 //        $institute = Institute::find($iid);
         $ss = Student::where('institute_id', $iid)->get();
-        foreach ($ss as $s){
+        foreach ($ss as $s) {
             $url = 'http://users.sendsmsbd.com/smsapi?';
             $fields = array(
                 'api_key' => urlencode('C20046445d94a3c54b6d14.48937019'),
@@ -427,13 +450,13 @@ class ReportController extends Controller
                 'senderid' => 'European IT',
                 'msg' => $request->sms,
             );
-            $fields_string='';
-            foreach($fields as $key=>$value){
-                $fields_string .= $key.'='.$value.'&';
+            $fields_string = '';
+            foreach ($fields as $key => $value) {
+                $fields_string .= $key . '=' . $value . '&';
             }
             rtrim($fields_string, '&');
             $ch = curl_init();
-            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
             curl_setopt($ch, CURLOPT_POST, count($fields));
             curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
@@ -441,8 +464,7 @@ class ReportController extends Controller
             curl_setopt($ch, CURLOPT_FAILONERROR, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result = curl_exec($ch);
-            if($result === false)
-            {
+            if ($result === false) {
                 $e = curl_error($ch);
                 Session::flash('error', "Something went wrong :( $e");
                 return redirect()->back();
@@ -452,10 +474,6 @@ class ReportController extends Controller
         Session::flash('success', "Sms sent successfully.");
         return redirect()->back();
     }
-
-
-
-
 
 
 }
